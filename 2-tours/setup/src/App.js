@@ -9,16 +9,21 @@ function App() {
   const [loading, setLoading] = useState(true)
   const [tours, setTours] = useState([])
 
-useEffect(() => {
-  fetch(url)
-  .then((response) => response.json())
-  .then((tours) => {
-    // const { id, name, info, image, price } = tours
-    setTours(tours)
-    setLoading(false)
-  })
-  .catch((error) => console.log(error))
-}, [])
+  const removeTour = (id) => {
+    const newTours = tours.filter((tour) => tour.id !== id)
+    setTours(newTours)
+  }
+
+  useEffect(() => {
+    fetch(url)
+    .then((response) => response.json())
+    .then((tours) => {
+      // const { id, name, info, image, price } = tours
+      setTours(tours)
+      setLoading(false)
+    })
+    .catch((error) => console.log(error))
+  }, [])
 
   if(loading) {
       return(
@@ -31,6 +36,7 @@ useEffect(() => {
     <main>
       <Tours 
         tours={tours}
+        removeTour={removeTour}
       />
     </main>
   )
