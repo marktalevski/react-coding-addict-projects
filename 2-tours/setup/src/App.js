@@ -32,6 +32,19 @@ function App() {
         </main>
     )
   }
+if(tours.length === 0) {
+  return(
+    <main>
+      <div className="title">
+        <h2>No Tours Left</h2>
+        {/* <button onClick={() => setTours(tours)}>
+          Refresh 
+        </button> */}
+      </div>
+    </main>
+  )
+}
+
   return(
     <main>
       <Tours 
